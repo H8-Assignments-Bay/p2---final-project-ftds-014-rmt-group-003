@@ -1,0 +1,5 @@
+train: data/train/images
+val: data/train/images
+
+nc: 38
+names: ["Republic of Gamers", "Hello Fresh", "Displate", "KiwiCo", "World of Tanks", "Dollar Shave Club", "SkillShare", "Manscaped", "Rhinoshield", "Raid shadow legends", "Worlds of Warships", "Fruitz", "War Thunder", "Redbull", "Squarespace", "Brilliant.org", "Logitech", "DBrand", "Honey coupon", "Gorillas brand", "levlup", "Ridge wallet", "ExpressVPN", "State of Survival", "Coca Cola", "Crunchyroll", "Uber Eats", "Surfshark", "Corsair", "Lootcrate", "Amazon", "audible", "NordVPN", "GFuel", "Genshin Impact", "TunnelBear VPN", "Microsoft", "Winamax"]
