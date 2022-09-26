@@ -1,3 +1,4 @@
+import string
 import streamlit as st
 from detect import run
 from PIL import Image
@@ -37,6 +38,21 @@ def webcam(src):
     if src == 'Webcam': 
         # Image selector slider
         subprocess.run(['python', 'detect.py', '--source', '0','--conf', '0.4'])
+        
+def url_video(src):
+    url_ = st.text_input('Input URL video 🔗')
+    st.write('For example: https://www.youtube.com/watch?v=Q32cOXMhSjQ')
+    if (url_ != None) & (url_ != ''):
+        run(weights=cfg_model_path, source=url_, conf_thres=0.6)
+        url_ = url_.rsplit('/',1)[-1]
+        for char in string.punctuation:
+            url_ =url_.replace(char,'_')
+        url_ = url_ + '.mp4'            
+        outputpath = os.path.join('data/outputs',url_).replace('\\','/')
+        st_video = open(outputpath, 'rb')
+        video_bytes = st_video.read()
+        st.video(video_bytes)
+       
 
 def videoInput(device, src):
     uploaded_video = st.file_uploader("Upload Video", type=['mp4', 'mpeg', 'mov'])
@@ -49,10 +65,6 @@ def videoInput(device, src):
         with open(imgpath, mode='wb') as f:
             f.write(uploaded_video.read())  # save video to disk
 
-        st_video = open(imgpath, 'rb')
-        video_bytes = st_video.read()
-        st.video(video_bytes)
-        st.write("Uploaded Video")
         run(weights=cfg_model_path, source=imgpath)
         st.write("Model Prediction")
         st_video2 = open(outputpath, 'rb')
@@ -64,7 +76,7 @@ def main():
     st.sidebar.title('⚙️Options')
     datasrc = st.sidebar.radio("Select input source.", ['Upload your own data','Webcam'])
                 
-    option = st.sidebar.radio("Select input type.", ['Image', 'Video'], disabled = False)
+    option = st.sidebar.radio("Select input type.", ['Image', 'Video', 'URL'], disabled = False)
 
     st.header('📦Logo Detection Model Demo')
     st.subheader('👈🏽 Select the options')
@@ -72,6 +84,8 @@ def main():
         imageInput('cpu', datasrc)
     elif (option == "Video") & (datasrc == 'Upload your own data'): 
         videoInput('cpu', datasrc)
+    elif (option == "URL") & (datasrc == 'Upload your own data'): 
+        url_video(datasrc)
     elif datasrc == 'Webcam':
         webcam(datasrc)
 
