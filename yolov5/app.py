@@ -45,7 +45,8 @@ def url_video(src):
     if (url_ != None) & (url_ != ''):
         run(weights=cfg_model_path, source=url_, conf_thres=0.6)
         url_ = url_.rsplit('/',1)[-1]
-        for char in string.punctuation:
+        #for char in string.punctuation:
+        for char in ["?","="]:
             url_ =url_.replace(char,'_')
         url_ = url_ + '.mp4'            
         outputpath = os.path.join('data/outputs',url_).replace('\\','/')
