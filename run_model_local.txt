@@ -1,0 +1,12 @@
+Silahkan clone repo ini atau download dalam zip file
+
+1. Weights hasil training sudah ada di folder 'yolov5' dengan nama file 'best.pt'
+2. Data datacst.yaml sudah ada di dalam yolov5/data/datacst.yaml
+3. Pastikan anda sudah install library yolov5/requirements.txt
+4. Buka file dan run app.py. Setelah itu jalankan perintah berikut di terminal (pastikan path di '/yolov5'):
+    streamlit run app.py
+    URL lokal akan terbentuk dan otomatis terbuka di browser anda
+5. Silahkan masukkan file image maupun video, model akan langsung menghasilkan prediksi logo yang ada di dalam image maupun video.
+6. File upload dapat dilihat di yolov5/data/uploads
+    File output dapat dilihat di yolov5/data/outputs
+7. ctrl+c pada terminal untuk stop 

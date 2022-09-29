@@ -1,0 +1,5 @@
+1. Impor library YOLOv5 ke dokumen frontend,
+
+2. Masukkan dokumen yang ada di `weights.zip` ke `/yolov5`
+
+3. Masukkan `datacst.yaml` ke `/yolov5/data`
